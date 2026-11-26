@@ -1,5 +1,11 @@
 package controller;
 
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 import dao.ArquivoDAO;
 import dao.ArquivoDAOImpl;
 import dao.HistoricoDAO;
@@ -8,12 +14,6 @@ import model.Arquivo;
 import model.Categoria;
 import model.HistoricoAlteracao;
 import model.TipoOperacao;
-
-import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 
 /**
  * Ponte entre a View e o DAO (arquitetura MVC).
@@ -70,7 +70,7 @@ public class ArquivoController {
      * Compara o arquivo como estava antes da edição com os novos valores
      * digitados, grava um registro de histórico para CADA campo alterado, e
      * só então salva a atualização no banco. dataModificacao é sempre
-     * renovada, mesmo que nenhum outro campo tenha mudado (ver §7.3).
+     * renovada, mesmo que nenhum outro campo tenha mudado.
      */
     public void editar(Arquivo original, String nome, String tipo, String descricao, String caminho,
                         boolean favorito, Integer colecaoId, List<Integer> categoriaIds)
@@ -182,9 +182,9 @@ public class ArquivoController {
     }
 
     /**
-     * Ordenação fica aqui no Controller (não em ORDER BY no SQL) porque é
+     * Ordenação fica aqui no Controller porque é
      * regra de apresentação, não de acesso a dados — mantém o DAO com
-     * responsabilidade única (ver §7.4 da especificação).
+     * responsabilidade única.
      */
     private void ordenar(List<Arquivo> lista, CriterioOrdenacao criterio, boolean crescente) {
         Comparator<Arquivo> comparador = criarComparador(criterio);
@@ -236,7 +236,6 @@ public class ArquivoController {
     /**
      * Converte uma SQLException técnica numa mensagem que faz sentido pra
      * quem está usando o programa. A View nunca vê uma SQLException crua
-     * (ver §7.6 da especificação).
      */
     private ArquivoException traduzirErroBanco(SQLException e) {
         // Código de erro do driver MySQL para "não consegui conectar" (ex.: banco fora do ar).

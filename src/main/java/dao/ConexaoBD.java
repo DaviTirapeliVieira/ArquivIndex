@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
- * Responsável por UMA única coisa: fornecer a conexão com o banco de dados.
+ * Responsável por fornecer a conexão com o banco de dados.
  *
  * Padrão Singleton: existe apenas UMA instância desta classe durante toda a
  * execução do programa. Toda parte do sistema que precisar de conexão pede
@@ -17,7 +17,7 @@ import java.util.Properties;
  * A URL, o usuário e a senha NÃO ficam fixos no código: vêm de
  * config.properties (src/main/resources), lido do classpath. Isso permite
  * levar o projeto para outra máquina só ajustando um arquivo de texto, sem
- * recompilar (ver §12.1 da especificação).
+ * recompilar.
  */
 public class ConexaoBD {
 
@@ -80,8 +80,7 @@ public class ConexaoBD {
 
     // Falha cedo e com mensagem específica de qual chave falta, em vez de
     // deixar o programa tentar conectar com uma URL/usuário/senha nulos e
-    // dar um erro técnico confuso mais adiante (ver §12.1: "não falhar
-    // silenciosamente").
+    // dar um erro técnico confuso mais adiante 
     private String obterPropriedadeObrigatoria(Properties config, String chave) {
         String valor = config.getProperty(chave);
         if (valor == null || valor.isBlank()) {

@@ -1,10 +1,10 @@
 package view;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
 
 /**
  * Janela única do sistema: três abas (Arquivos, Coleções, Categorias).
- * Escrita à mão, sem construtor visual (ver §7.5 da especificação).
  */
 public class JanelaPrincipal extends JFrame {
 

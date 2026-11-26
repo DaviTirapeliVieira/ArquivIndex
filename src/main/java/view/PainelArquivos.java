@@ -1,5 +1,33 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.GridLayout;
+import java.awt.Window;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+
 import controller.ArquivoController;
 import controller.ArquivoException;
 import controller.CriterioOrdenacao;
@@ -8,17 +36,9 @@ import model.Arquivo;
 import model.Categoria;
 import model.Colecao;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Aba de arquivos: cadastro/edição, listagem, busca combinada, ordenação e
- * acesso ao histórico. Escrita à mão, sem construtor visual, para que cada
- * linha possa ser explicada na apresentação (ver §7.5 da especificação).
+ * acesso ao histórico. 
  */
 public class PainelArquivos extends JPanel {
 
@@ -79,9 +99,7 @@ public class PainelArquivos extends JPanel {
         recarregar();
     }
 
-    // ---------------------------------------------------------------
     // Montagem da tela
-    // ---------------------------------------------------------------
 
     private JPanel criarPainelFormulario() {
         JPanel painel = new JPanel(new GridLayout(4, 2, 5, 5));
@@ -226,12 +244,10 @@ public class PainelArquivos extends JPanel {
         return painel;
     }
 
-    // ---------------------------------------------------------------
     // Combos auxiliares (coleção/categoria), preenchidos a partir das
     // outras abas — chamado ao criar a tela e sempre que o usuário volta
     // para a aba Arquivos (ver JanelaPrincipal), para refletir cadastros
     // feitos nas outras abas.
-    // ---------------------------------------------------------------
 
     public void atualizarCombosAuxiliares() {
         try {
@@ -266,9 +282,7 @@ public class PainelArquivos extends JPanel {
         }
     }
 
-    // ---------------------------------------------------------------
     // Cadastro / edição / histórico
-    // ---------------------------------------------------------------
 
     private void cadastrar() {
         try {
@@ -357,10 +371,8 @@ public class PainelArquivos extends JPanel {
         arquivoSelecionado = null;
     }
 
-    // ---------------------------------------------------------------
     // Seleção na tabela: preenche o formulário com o arquivo escolhido,
     // habilitando a edição.
-    // ---------------------------------------------------------------
 
     private void selecionarLinha() {
         int linha = tabela.getSelectedRow();
@@ -398,9 +410,7 @@ public class PainelArquivos extends JPanel {
         }
     }
 
-    // ---------------------------------------------------------------
     // Busca combinada e listagem
-    // ---------------------------------------------------------------
 
     private void buscar() {
         FiltroBusca filtro = new FiltroBusca();

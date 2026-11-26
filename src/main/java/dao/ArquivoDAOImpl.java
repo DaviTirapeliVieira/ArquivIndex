@@ -1,13 +1,19 @@
 package dao;
 
-import controller.FiltroBusca;
-import model.Arquivo;
-import model.Categoria;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.sql.Types;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import controller.FiltroBusca;
+import model.Arquivo;
+import model.Categoria;
 
 public class ArquivoDAOImpl implements ArquivoDAO {
 
@@ -22,7 +28,7 @@ public class ArquivoDAOImpl implements ArquivoDAO {
         // Transação: o arquivo e seus vínculos de categoria precisam ser
         // salvos juntos. Se o vínculo falhar no meio do caminho, desfazemos
         // tudo com rollback() para não deixar um arquivo salvo com
-        // categorias pela metade (ver §7.2 da especificação).
+        // categorias pela metade.
         conexao.setAutoCommit(false);
         try {
             try (PreparedStatement stmt = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -124,8 +130,7 @@ public class ArquivoDAOImpl implements ArquivoDAO {
      * e vai acrescentando "AND ..." conforme cada filtro estiver preenchido,
      * guardando os valores numa lista para setar no PreparedStatement na
      * mesma ordem depois. Filtrar aqui, no banco, evita trazer para a
-     * memória registros que a busca descartaria de qualquer forma — ver
-     * §7.4 da especificação (filtrar no SQL, ordenar na aplicação).
+     * memória registros que a busca descartaria de qualquer forma.
      */
     @Override
     public List<Arquivo> buscar(FiltroBusca filtro) throws SQLException {
@@ -226,10 +231,7 @@ public class ArquivoDAOImpl implements ArquivoDAO {
         return lista;
     }
 
-    // Para cada arquivo da lista, busca suas categorias separadamente. Não é
-    // a forma mais rápida (um SELECT a mais por arquivo), mas é simples de
-    // explicar e a lista de arquivos de um projeto acadêmico nunca é grande
-    // o bastante para isso ser um problema real de desempenho.
+    // Para cada arquivo da lista, busca suas categorias separadamente.
     private void preencherCategorias(List<Arquivo> lista) throws SQLException {
         for (Arquivo arquivo : lista) {
             arquivo.setCategorias(listarCategoriasDoArquivo(arquivo.getId()));

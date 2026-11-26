@@ -1,18 +1,27 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 import controller.ArquivoException;
 import controller.ColecaoController;
 import model.Colecao;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-
 /**
- * Aba de coleções: cadastro simples e listagem. Sem edição/exclusão — o
- * escopo da v2 só pediu isso para Arquivo (que precisa de histórico).
+ * Aba de coleções: cadastro simples e listagem. Sem edição/exclusão.
  */
 public class PainelColecoes extends JPanel {
 

@@ -3,7 +3,7 @@ package controller;
 /**
  * Agrupa os critérios da busca combinada de arquivos. Cada campo nulo (ou
  * false/vazio) significa "não filtrar por este critério" — é o ArquivoDAO
- * quem monta o SQL dinamicamente a partir daqui (ver §7.2 da especificação).
+ * quem monta o SQL dinamicamente a partir daqui.
  */
 public class FiltroBusca {
 

@@ -9,8 +9,6 @@ public class Arquivo {
 
     private int id; // não é 'final': o banco atribui o valor real após o INSERT
 
-    // Campos editáveis: a v2 trouxe edição de volta ao escopo (para viabilizar
-    // o histórico de alterações), então estes campos não são mais 'final'.
     private String nome;
     private String tipo;
     private String descricao;
@@ -70,9 +68,8 @@ public class Arquivo {
     // Chamado pelo DAO logo após o INSERT, com o ID que o MySQL gerou.
     public void setId(int id) { this.id = id; }
 
-    // Os setters abaixo só existem porque a v2 permite edição. O Controller é
-    // quem decide quando chamá-los, sempre depois de validar e comparar com
-    // os valores antigos para gerar o histórico (ver ArquivoController).
+    // O Controller é quem decide quando chamá-los, sempre depois de validar 
+    // e comparar com os valores antigos para gerar o histórico (ver ArquivoController).
     public void setNome(String nome) { this.nome = nome; }
     public void setTipo(String tipo) { this.tipo = tipo; }
     public void setDescricao(String descricao) { this.descricao = descricao; }
