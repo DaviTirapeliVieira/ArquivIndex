@@ -5,8 +5,14 @@ projeto da disciplina de Programação Orientada a Objetos. Ver
 `ESPECIFICACAO_ArquivIndex.md` para o detalhamento completo do projeto
 (escopo, modelo de dados, decisões de arquitetura).
 
-Este README é o passo a passo para colocar o projeto para rodar numa
-máquina que nunca viu o código antes.
+Este README é o passo a passo para colocar o projeto para rodar
+
+## Autores
+
+Desenvolvido por **Davi Tirapeli Vieira** e **Nuno Reis**!
+
+- [![GitHub]](https://github.com/DaviTirapeliVieira)
+- [![GitHub]](https://github.com/Nuno17500)
 
 ## 1. Pré-requisitos
 
